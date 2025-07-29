@@ -1,0 +1,31 @@
+//Exercicio 2 - Fatorial de um numero aleatorio
+package main
+
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+//função para calcular o fatorial
+func calcularFatorial(n int) int {
+	if n == 0 {
+	return 1
+	}
+	return n * calcularFatorial(n-1)
+}
+
+func main() {
+				
+	 rand.Seed(time.Now().UnixNano()) //garante que os numeros aleatorios saiam diferentes a cada execução
+
+	 //Gera um número aleatório
+	  numAleatorio := rand.Intn(10)
+
+	  fmt.Println("Número aleatório:", numAleatorio)
+
+	 //Calcula o fatorial do número aleatório
+	  fatorial := calcularFatorial(numAleatorio)
+
+	  fmt.Println("Fatorial:", fatorial)
+}
+
