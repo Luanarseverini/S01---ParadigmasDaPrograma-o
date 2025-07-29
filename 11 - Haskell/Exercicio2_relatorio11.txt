@@ -1,0 +1,20 @@
+calcularValor :: Int -> Int
+calcularValor n
+  | n >= 0    = factorial n  
+  | otherwise = n * 2
+
+factorial :: Int -> Int
+factorial 0 = 1
+factorial n = n * factorial (n - 1)
+
+main :: IO ()
+main = do
+  putStrLn "Testes:"
+  putStrLn $ "5:  " ++ show (calcularValor 5)   
+  putStrLn $ "4:  " ++ show (calcularValor 4)   
+  putStrLn $ "3:  " ++ show (calcularValor 3)   
+  putStrLn $ "2:  " ++ show (calcularValor 2)   
+  putStrLn $ "1:  " ++ show (calcularValor 1)   
+  putStrLn $ "0:  " ++ show (calcularValor 0)   
+  putStrLn $ "-1:  " ++ show (calcularValor (-1)) 
+  putStrLn $ "-5:  " ++ show (calcularValor (-5)) 

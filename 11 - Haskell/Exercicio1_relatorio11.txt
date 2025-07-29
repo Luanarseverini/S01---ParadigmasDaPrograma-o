@@ -1,0 +1,18 @@
+main :: IO ()
+main = do
+  -- Lista com elementos indo de 30 até 1 (decrescentemente)
+  let listaInicial = [30, 29 .. 1]
+  putStrLn $ "Lista inicial: " ++ show listaInicial
+
+  -- Multiplicando cada número da lista por 3
+  let resultadosTriplicados = map (* 3) listaInicial
+  putStrLn $ "Resultados triplicados: " ++ show resultadosTriplicados
+
+  -- Invertendo a lista
+  let listaInvertidaFinal = reverse resultadosTriplicados
+  putStrLn $ "Lista invertida final: " ++ show listaInvertidaFinal
+
+  -- Mostrando o último elemento
+  case listaInvertidaFinal of
+    [] -> putStrLn "A lista está vazia, não há último elemento."
+    _  -> putStrLn $ "Último elemento da lista invertida final: " ++ show (last listaInvertidaFinal)
