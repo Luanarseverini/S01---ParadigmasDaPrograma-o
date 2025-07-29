@@ -1,0 +1,24 @@
+//Exercício 2 - ARRAY
+
+use std::io;
+
+pub fn preenche_arr(arr: &mut [i32], x: i32) {
+    for (i, element) in arr.iter_mut().enumerate() {
+        *element = i as i32 * x;
+    }
+}
+
+pub fn main() {
+    let mut arr = [0; 10]; // Criando um array de 10 elementos inicializado com 0
+
+    //Lê um número do usuário (entrada)
+    let mut input = String::new();
+    println!("Digite um numero: ");
+    io::stdin().read_line(&mut input).expect("Falha ao ler a entrada");
+
+    let number_cvt: i32 = input.trim().parse().expect("Insira um numero valido");
+
+    preenche_arr(&mut arr, number_cvt);
+
+    println!("Array preenchido: {:?}", arr);
+}

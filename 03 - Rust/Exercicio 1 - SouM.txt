@@ -1,0 +1,66 @@
+//Exercicio 1 - Somar ou multiplicar
+
+use std::io; //Incluindo a biblioteca std::io
+
+fn main() {
+    loop { //Inicia um loop que permite multiplas operações
+        let (num1, num2) = ler_numeros(); 
+        let escolha = ler_escolha(); //Escolha da operação
+
+        let resultado = match escolha { //Faz a conta
+            1 => num1 * num2, 
+            2 => num1 + num2, 
+            _ => { 
+                println!("Opção inválida!");
+                continue; //Fiz isso para caso dar errado, volta para o inicio do loop
+            }
+        };
+
+        println!("Resultado: {}", resultado); 
+
+        if ler_continuacao() != 's' { 
+            break; //Sai do loop se a resposta for diferente de 's'
+        }
+    }
+}
+
+fn ler_numeros() -> (i32, i32) { //Lê dois numeros
+    (ler_numero("Digite o primeiro número:"), ler_numero("Digite o segundo número:"))
+}
+
+fn ler_numero(mensagem: &str) -> i32 { //Lê um numero
+    loop {
+        println!("{}", mensagem); 
+        let mut input = String::new(); 
+        io::stdin().read_line(&mut input).expect("Falha ao ler a linha"); 
+        match input.trim().parse() { 
+            Ok(num) => return num, 
+            Err(_) => println!("Entrada inválida. Digite um número inteiro."), //Essa parte são para os casos de erro nas respostas, o loop para com uma resposta invalida
+        }
+    }
+}
+
+fn ler_escolha() -> i32 { 
+    loop {
+        println!("Escolha a operação:\n1. Multiplicação\n2. Soma"); //Imprime as opções
+        let mut input = String::new();
+        io::stdin().read_line(&mut input).expect("Falha ao ler a linha");
+        match input.trim().parse() {
+            Ok(num) => return num,
+            Err(_) => println!("Entrada inválida. Digite 1 ou 2."),
+        }
+    }
+}
+
+fn ler_continuacao() -> char { //Função para ler a resposta de continuar ou não
+    loop {
+        println!("Deseja realizar outra operação? (s/n)");
+        let mut input = String::new();
+        io::stdin().read_line(&mut input).expect("Falha ao ler a linha");
+        if input.trim().len() == 1 { 
+            return input.trim().chars().next().unwrap(); 
+        } else {
+            println!("Entrada inválida. Digite 's' ou 'n'.");
+        }
+    }
+}

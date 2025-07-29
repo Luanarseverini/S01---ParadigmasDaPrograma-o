@@ -1,0 +1,64 @@
+use std::io; // Importa a biblioteca de entrada/saída padrão
+
+fn main() {
+    loop { // Inicia um loop infinito para permitir múltiplas operações
+        let (num1, num2) = ler_numeros(); // Chama a função para ler dois números
+        let escolha = ler_escolha(); // Chama a função para ler a escolha da operação
+
+        let resultado = match escolha { // Realiza a operação escolhida
+            1 => num1 * num2, // Multiplicação
+            2 => num1 + num2, // Soma
+            _ => { // Opção inválida
+                println!("Opção inválida!");
+                continue; // Volta para o início do loop
+            }
+        };
+
+        println!("Resultado: {}", resultado); // Imprime o resultado
+
+        if ler_continuacao() != 's' { // Pergunta se o usuário deseja continuar
+            break; // Sai do loop se a resposta for diferente de 's'
+        }
+    }
+}
+
+fn ler_numeros() -> (i32, i32) { // Função para ler dois números
+    (ler_numero("Digite o primeiro número:"), ler_numero("Digite o segundo número:"))
+}
+
+fn ler_numero(mensagem: &str) -> i32 { // Função para ler um número
+    loop {
+        println!("{}", mensagem); // Imprime a mensagem
+        let mut input = String::new(); // Cria uma nova string vazia
+        io::stdin().read_line(&mut input).expect("Falha ao ler a linha"); // Lê a entrada do usuário
+        match input.trim().parse() { // Tenta converter a entrada para um número inteiro
+            Ok(num) => return num, // Retorna o número se a conversão for bem-sucedida
+            Err(_) => println!("Entrada inválida. Digite um número inteiro."), // Imprime mensagem de erro se a conversão falhar
+        }
+    }
+}
+
+fn ler_escolha() -> i32 { // Função para ler a escolha da operação
+    loop {
+        println!("Escolha a operação:\n1. Multiplicação\n2. Soma"); // Imprime as opções
+        let mut input = String::new();
+        io::stdin().read_line(&mut input).expect("Falha ao ler a linha");
+        match input.trim().parse() {
+            Ok(num) => return num,
+            Err(_) => println!("Entrada inválida. Digite 1 ou 2."),
+        }
+    }
+}
+
+fn ler_continuacao() -> char { // Função para ler a resposta de continuar ou não
+    loop {
+        println!("Deseja realizar outra operação? (s/n)");
+        let mut input = String::new();
+        io::stdin().read_line(&mut input).expect("Falha ao ler a linha");
+        if input.trim().len() == 1 { // Verifica se a entrada tem um único caractere
+            return input.trim().chars().next().unwrap(); // Retorna o caractere
+        } else {
+            println!("Entrada inválida. Digite 's' ou 'n'.");
+        }
+    }
+}
