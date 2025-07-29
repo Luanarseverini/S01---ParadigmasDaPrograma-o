@@ -1,0 +1,93 @@
+const readline = require('readline');
+// Cria uma interface para leitura de entrada do usuário
+const rl = readline.createInterface({
+  input: process.stdin, 
+  output: process.stdout 
+});
+// Iniciando 
+console.log("Classes... ");
+console.log("Classe Animal: ");
+// Classe base que representa um animal genérico
+class Animal {
+  constructor(nome, idade, especie) {
+    this.nome = nome;    // Nome do animal
+    this.idade = idade;  // Idade do animal
+    this.especie = especie; // Espécie do animal
+  }
+  // Método para exibir informações básicas do animal
+  printInfo() {
+    console.log(`Nome: ${this.nome}`);
+    console.log(`Idade: ${this.idade}`);
+    console.log(`Espécie: ${this.especie}`);
+  }
+}
+// Classe específica para cachorros, herda de Animal
+class Cachorro extends Animal {
+  #raca; // Atributo privado para raça usando #
+  constructor(nome, idade, raca) {
+    super(nome, idade, "Cachorro"); // Chama o construtor da classe pai
+    this.#raca = raca; // Define a raça do cachorro
+  }
+  // Sobrescreve o método printInfo para incluir a raça
+  printInfo() {
+    super.printInfo(); // Chama o método printInfo da classe pai
+    console.log(`Raça: ${this.#raca}`);
+  }
+}
+// Classe específica para gatos, herda de Animal
+class Gato extends Animal {
+  constructor(nome, idade, cores) {
+    super(nome, idade, "Gato"); // Chama o construtor da classe pai
+    this.cores = cores; // Define as cores do gato
+  }
+  // Sobrescreve o método printInfo para incluir as cores
+  printInfo() {
+    super.printInfo(); // Chama o método printInfo da classe pai
+    console.log(`Cores: ${this.cores.join(", ")}`); // Exibe as cores do gato
+  }
+}
+// Função para criar um novo Animal
+function criarAnimal() {
+  // Pergunta ao usuário pelos dados do animal
+  rl.question('Nome do animal: ', (nome) => {
+    rl.question('Idade do animal: ', (idade) => {
+      rl.question('Espécie do animal: ', (especie) => {
+        console.log("\n-- Animal --");
+        const animal = new Animal(nome, parseInt(idade), especie); // Cria o objeto Animal
+        animal.printInfo(); // Exibe as informações do Animal
+        criarCachorro(); // Chama a função para criar um cachorro
+      });
+    });
+  });
+}
+// Função para criar um novo Cachorro
+function criarCachorro() {
+  // Pergunta ao usuário pelos dados do cachorro
+  rl.question('\nNome do cachorro: ', (nome) => {
+    rl.question('Idade do cachorro: ', (idade) => {
+      rl.question('Raça do cachorro: ', (raca) => {
+        console.log("\n-- Cachorro --");
+        const cachorro = new Cachorro(nome, parseInt(idade), raca); // Cria o objeto Cachorro
+        cachorro.printInfo(); // Exibe as informações do Cachorro
+        criarGato(); // Chama a função para criar um gato
+      });
+    });
+  });
+}
+// Função para criar um novo Gato
+function criarGato() {
+  // Pergunta ao usuário pelos dados do gato
+  rl.question('\nNome do gato: ', (nome) => {
+    rl.question('Idade do gato: ', (idade) => {
+      rl.question('Cores do gato (separadas por vírgula): ', (coresInput) => {
+        console.log("\n-- Gato --");
+        const cores = coresInput.split(',').map(cor => cor.trim()); // Processa as cores inseridas
+        const gato = new Gato(nome, parseInt(idade), cores); // Cria o objeto Gato
+        gato.printInfo(); // Exibe as informações do Gato
+        rl.close(); // Fecha a interface de leitura
+      });
+    });
+  });
+}
+// criação de um animal
+criarAnimal();
