@@ -1,0 +1,65 @@
+//Relatório 5
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//Classe pessoa
+class Pessoa {
+public:
+    string nome;
+    int idade;
+
+    //Entra com nome e idade
+    Pessoa(string nome, int idade) : nome(nome), idade(idade) {}
+
+    //Imprime informações da pessoa
+    void imprimirInfo() {
+        cout << "O nome é: " << nome << endl;
+        cout << "Idade: " << idade << endl;
+    }
+};
+
+//Classe aluno herdada da classe pessoa
+class Aluno : public Pessoa {
+public:
+    string matricula;
+
+    //Entra com nome, idade e matricula
+    Aluno(string nome, int idade, string matricula) : Pessoa(nome, idade), matricula(matricula) {}
+
+    //Imprime informações do aluno
+    void imprimirInfo() {
+        Pessoa::imprimirInfo(); // Chama o método da classe Pessoa
+        cout << "Matricula do aluno: " << matricula << endl;
+    }
+};
+
+//Classe Professor herdada da classe pessoa 
+class Professor : public Pessoa {
+public:
+    //Inicializa nome e idade
+    Professor(string nome, int idade) : Pessoa(nome, idade) {}
+};
+
+int main() {
+    //Pessoa, Aluno e  Professor
+    Pessoa pessoa("Fabio", 23);
+    Aluno aluno("Luana", 20, "24124");
+    Professor professor("Caio", 40);
+
+
+    // Imprime informações de cada objeto
+    cout << "Pessoa" << endl;
+    pessoa.imprimirInfo();
+    
+    cout << "Aluno" << endl;
+    aluno.imprimirInfo();
+
+    cout << "Professor" << endl;
+    professor.imprimirInfo();
+
+
+    return 0;
+}
