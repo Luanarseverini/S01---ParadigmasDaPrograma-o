@@ -1,0 +1,24 @@
+10 REM EXERCICIO 1 -  EQ. DE SEGUNDO GRAU
+
+20 input "Valor de a "; a
+30 print a
+40 input "Valor de b "; b
+50 print b
+60 input "Valor de c "; c
+70 print c
+80 d = (b*b) - 4*a*c 
+90 print "Valor de d: "
+100 print d
+110 IF (d < 0) THEN GOTO 190 ELSE GOTO 120 
+
+120 raiz1 =  (-b+SQR(d))/(2*a)
+130 raiz2 =  (-b-SQR(d))/(2*a)
+140 print "Valor da raiz1: "
+150 print raiz1
+160 print "Valor da raiz2: "
+170 print raiz2
+180 END
+190 print "nao ha raiz"
+200 GOTO 20
+210 END
+

@@ -1,0 +1,12 @@
+10 REM EXERCICIO 2 - Fatorial de um numero
+
+20 x = RND (10)
+30 print "Numero para calcular o fatorial: "
+40 print x
+
+50 F = 1
+60 FOR I = 1 TO x + 1
+70 F = (F * I)
+80 NEXT I
+90 print "O fatorial de x é: "
+100 print F
