@@ -1,0 +1,22 @@
+(defun valores (elemento)
+
+  (if (>= elemento 4)
+      (* elemento elemento) ;; Multiplica o elemento por ele mesmo
+      (/ elemento 2)))    ;; Divide o elemento por 2
+
+(defun exercicio ()
+
+(let* ((lista1 '(1 2 3))
+   (lista1-processada (mapcar #'valores lista1)))
+(print lista1)
+(print lista1-processada)
+
+(let* ((lista2 '(4 5 6))
+     (lista2-processada (mapcar #'valores lista2))
+     (lista-concatenada (append lista1-processada lista2-processada)))
+      
+(print lista2)
+(print lista2-processada)
+(print lista-concatenada))))
+
+(exercicio)
