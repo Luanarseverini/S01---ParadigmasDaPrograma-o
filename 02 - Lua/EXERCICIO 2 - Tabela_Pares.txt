@@ -1,0 +1,21 @@
+-- Exercicio 2 - Tabela e numeros pares
+
+local num = {}
+
+math.randomseed(os.time())  -- evita a sequencia ser a mesma
+
+for i = 1, 100 do
+    num[i] = math.random(1, 100)
+    print("Numero aleatorio: " .. num[i])
+end
+
+-- Contando os pares
+local pares = 0
+for i = 1, 100 do
+    if num[i] % 2 == 0 then
+        pares = pares + 1
+    end
+end
+
+
+print("Quantidade de números pares: " .. pares)

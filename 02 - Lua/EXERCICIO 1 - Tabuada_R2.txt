@@ -1,0 +1,8 @@
+-- EXERCICIO 1 - Tabuada
+
+print("Digite um numero")
+num = io.read()
+
+for i = 1, 10 do
+  print(num .. " x " .. i .. " = " .. num * i)
+end
