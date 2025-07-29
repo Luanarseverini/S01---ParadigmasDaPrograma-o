@@ -1,0 +1,24 @@
+1) a) Resultado(joao, X)
+Resposta -> X = 8; devido ao resultado(joao, 8)
+
+b) falta(X,Y), Y > 0
+Resposta -> 
+X = joao, Y = 2; devido a falta(joao, 2)
+X = pedro, Y = 5; devido a falta(pedro, 5)
+X = jose, Y = 1; devido a falta(jose, 1)
+
+c) reprovado(jose)
+Resposta - >
+resultado(jose, 6) 
+falta(jose,1)
+6 < 6 ; 1 > 3 (falso, falso)
+
+false (Jose não esta reprovado)
+
+2) Regra para verificar alunos aprovados, que tenham nota maior que 6 e menos que 2 faltas:
+
+% regras
+reprovado(x) :-
+    resultado(X, Nota),
+    falta(X, F),
+      (Nota > 6 ; F < 2)
