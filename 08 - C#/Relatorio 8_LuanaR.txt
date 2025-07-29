@@ -1,0 +1,87 @@
+// Relatorio 8 
+
+using System;
+
+public class Cachorro
+{
+    public string Nome { get; set; }
+    public int Idade { get; set; }
+
+    public void MostrarNome()
+    {
+        Console.WriteLine($"O nome do cachorro é: {Nome}");
+    }
+
+    public virtual void ShowIdade()
+    {
+        Console.WriteLine($"A idade do cachorro é: {Idade} anos");
+    }
+}
+
+public class CachorroGrande : Cachorro
+{
+    private string tamanho;
+
+    public CachorroGrande(string nome, int idade, string tamanho)
+    {
+        Nome = nome;
+        Idade = idade;
+        this.tamanho = tamanho;
+    }
+
+    public override void ShowIdade() 
+    {
+        Console.WriteLine($"A idade do cachorro grande é: {Idade} anos");
+    }
+
+    public string Tamanho
+    {
+        get { return tamanho; }
+        set { tamanho = value; }
+    }
+}
+
+public class CachorroPequeno : Cachorro
+{
+    public CachorroPequeno(string nome, int idade)
+    {
+        Nome = nome;
+        Idade = idade;
+    }
+
+    public override void ShowIdade() 
+    {
+        Console.WriteLine($"A idade do cachorro pequeno é: {Idade} anos");
+    }
+}
+
+public class Program
+{
+    static void Main(string[] args)
+    {
+        // Cria três objetos: um da classe Cachorro, um de CachorroPequeno e um de CachorroGrande
+        Cachorro cachorroBase = new Cachorro { Nome = "Rick", Idade = 5 };
+        CachorroPequeno cachorroPequeno = new CachorroPequeno("Pitoco", 7);
+        CachorroGrande cachorroGrande = new CachorroGrande("Grego", 8, "Grande");
+
+        // chama os métodos de mostrar nome e idade
+        static void MostrarInformacoes(Cachorro cachorro)
+        {
+            cachorro.MostrarNome();
+            cachorro.ShowIdade();
+            Console.WriteLine();
+        }
+
+        // Imprime cada classe
+        Console.WriteLine("--- Cachorro Base ---");
+        MostrarInformacoes(cachorroBase);
+
+        Console.WriteLine("--- Cachorro Pequeno ---");
+        MostrarInformacoes(cachorroPequeno);
+
+        Console.WriteLine("--- Cachorro Grande ---");
+        MostrarInformacoes(cachorroGrande);
+        Console.WriteLine("--- Informacao Extra ---");
+        Console.WriteLine($"O tamanho do cachorro {cachorroGrande.Nome} é: {cachorroGrande.Tamanho}");
+    }
+}
