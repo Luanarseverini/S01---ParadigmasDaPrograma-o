@@ -1,0 +1,31 @@
+#Exercicio 2 - Hierarquia de carros
+
+class Carro
+  def initialize(modelo)
+    @modelo = modelo
+  end
+
+  def descrever
+    "Carro, modelo: #{@modelo}"
+  end
+end
+
+class CarroEsportivo < Carro
+  def descrever
+    "Carro esportivo, modelo: #{@modelo}"
+  end
+end
+
+class CarroSedan < Carro
+  def descrever
+    "Carro sedan, modelo: #{@modelo}"
+  end
+end
+
+carro_comum = Carro.new("Padrão")
+carro_esportivo = CarroEsportivo.new("Esportivo")
+carro_sedan = CarroSedan.new("Sedan")
+
+puts carro_comum.descrever
+puts carro_esportivo.descrever
+puts carro_sedan.descrever
